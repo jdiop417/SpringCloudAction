@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: spring-cache
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_cache
+    username: root
+    password: Mysql@426853
+  redis:
+    host: 127.0.0.1
+
+server:
+  port: 8082
+
+logging:
+  level:
+    org:
+      learning:
+        springbootcache: debug
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: org.learning.springbootcache.entity
+  mapper-locations: classpath:mapper/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8088/eureka/
