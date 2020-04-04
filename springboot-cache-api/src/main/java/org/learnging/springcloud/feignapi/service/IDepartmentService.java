@@ -8,14 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-
-
 @RequestMapping("/dept")
-
 public interface IDepartmentService {
     @GetMapping("/{id}")
-    public DepartmentDTO getDept(@PathVariable("id") Integer id);
+    DepartmentDTO getDept(@PathVariable("id") Integer id);
 
     @GetMapping("/in")
-    public List<DepartmentDTO> getDepts(@RequestParam("ids") List<Integer> ids);
+    List<DepartmentDTO> getDepts(@RequestParam("ids") List<Integer> ids);
 }
