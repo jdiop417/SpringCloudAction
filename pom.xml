@@ -24,9 +24,9 @@
 
     <modules>
         <module>eureka-server</module>
+        <module>springboot-cache-api</module>
         <module>springboot-cache</module>
         <module>hystrix-collapser</module>
-<!--        <module>server-provider-api</module>-->
     </modules>
 
     <dependencies>
@@ -42,6 +42,19 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.2-jre</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.10</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -56,13 +69,5 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

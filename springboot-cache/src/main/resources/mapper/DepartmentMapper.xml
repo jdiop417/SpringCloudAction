@@ -16,4 +16,18 @@
             </if>
         </where>
     </select>
+
+
+    <select id="getBatchByIdIn" resultType="Department">
+        select
+        <include refid="baseSelect"/>
+        from department
+        <where>
+            id in
+            <foreach collection="ids" open="(" item="id" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
 </mapper>

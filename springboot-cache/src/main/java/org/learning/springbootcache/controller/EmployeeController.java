@@ -1,6 +1,6 @@
 package org.learning.springbootcache.controller;
 
-import org.learning.springbootcache.entity.Employee;
+import org.learnging.springcloud.feignapi.dto.EmployeeDTO;
 import org.learning.springbootcache.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +15,12 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/emp/{id}")
-    public Employee getEmp(@PathVariable("id") Integer id) {
+    public EmployeeDTO getEmp(@PathVariable("id") Integer id) {
         return employeeService.getEmpById(id);
     }
 
-
     @GetMapping("/emp")
-    public Employee updateEmp(@RequestBody Employee employee) {
+    public EmployeeDTO updateEmp(@RequestBody EmployeeDTO employee) {
         employeeService.updateEmp(employee);
         return employee;
     }
@@ -34,7 +33,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/emp/lastName/{lastName}")
-    public Employee getEmpByLastName(@PathVariable("lastName") String lastName) {
+    public EmployeeDTO getEmpByLastName(@PathVariable("lastName") String lastName) {
         return employeeService.getEmpByLastName(lastName);
     }
 

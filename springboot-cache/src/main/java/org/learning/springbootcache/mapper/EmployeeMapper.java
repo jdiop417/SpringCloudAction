@@ -10,7 +10,6 @@ public interface EmployeeMapper {
 
     void deletEmpById(@NotNull @Param("id") Integer id);
 
-
     void updateEmp(Employee employee);
 
     Employee getEmpById(Integer id);

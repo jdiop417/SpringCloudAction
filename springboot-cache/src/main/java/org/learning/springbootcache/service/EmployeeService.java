@@ -1,5 +1,7 @@
 package org.learning.springbootcache.service;
 
+import org.learnging.springcloud.feignapi.dto.EmployeeDTO;
+import org.learning.springbootcache.convert.EmployeeConvert;
 import org.learning.springbootcache.entity.Employee;
 import org.learning.springbootcache.mapper.EmployeeMapper;
 import org.slf4j.Logger;
@@ -19,16 +21,19 @@ public class EmployeeService {
     private EmployeeMapper employeeMapper;
 
     @Cacheable(/*cacheNames = "emp",*/ key = "#id", condition = "#id>0")
-    public Employee getEmpById(Integer id) {
+    public EmployeeDTO getEmpById(Integer id) {
         logger.debug("查询" + id + "号员工");
-        return employeeMapper.getEmpById(id);
+        Employee empById = employeeMapper.getEmpById(id);
+        return new EmployeeConvert().convert(empById);
     }
 
+
     @CachePut(/*value = "emp",*/ key = "#result.id")
-    public Employee updateEmp(Employee employee) {
-        logger.debug("更新" + employee.getId() + "号员工");
+    public EmployeeDTO updateEmp(EmployeeDTO employeeDTO) {
+        logger.debug("更新" + employeeDTO.getId() + "号员工");
+        Employee employee = new EmployeeConvert().reverse().convert(employeeDTO);
         employeeMapper.updateEmp(employee);
-        return employee;
+        return employeeDTO;
     }
 
     @CacheEvict(key = "#id", beforeInvocation = true)
@@ -45,7 +50,8 @@ public class EmployeeService {
                     @CachePut(key = "#result.email")
             }
     )
-    public Employee getEmpByLastName(String lastname) {
-        return employeeMapper.getEmpByLastName(lastname);
+    public EmployeeDTO getEmpByLastName(String lastname) {
+        Employee empByLastName = employeeMapper.getEmpByLastName(lastname);
+        return new EmployeeConvert().convert(empByLastName);
     }
 }

@@ -6,12 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Alias("Department")
-public class Department {
+public class Department  implements Serializable {
     private String id;
     private String departmentName;
+
+
+
+
+
 }
